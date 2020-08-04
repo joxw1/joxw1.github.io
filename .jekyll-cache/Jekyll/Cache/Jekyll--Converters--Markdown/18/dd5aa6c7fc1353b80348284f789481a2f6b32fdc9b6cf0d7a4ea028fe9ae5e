@@ -1,0 +1,101 @@
+I"<p>JavaScript ist eine plattformunabhängige, objekt-orientierte Programmiersprache, die zusammen mit HTML und CSS das “Rückgrat” der Web-Entwicklung darstellt.</p>
+
+<h2 id="sektion-1-javascript-basics">Sektion 1: JavaScript Basics</h2>
+
+<h3 id="primitive-datentypen">Primitive Datentypen</h3>
+
+<p>Da JavaScript grundsätzlich objektorientiert arbeitet, kann man Werte zu Variablen zuweisen.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">firstName</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">John</span><span class="dl">'</span><span class="p">;</span> <span class="c1">// "John" würde auch gehen</span>
+</code></pre></div></div>
+
+<p>Die Arten an Zuweisungen, die man machen kann sind:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Typ</th>
+      <th>Beschreibung</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Number</td>
+      <td>Zahlen (Sind <strong>immer</strong> Gleitkommazahlen!)</td>
+    </tr>
+    <tr>
+      <td>String</td>
+      <td>Text (Zeichenketten und Zeichen)</td>
+    </tr>
+    <tr>
+      <td>Boolean</td>
+      <td>Wahrheitswert (Logischer Typ <code class="language-plaintext highlighter-rouge">true</code> und <code class="language-plaintext highlighter-rouge">false</code>)</td>
+    </tr>
+    <tr>
+      <td>Undefined</td>
+      <td>Datentyp ohne Wert (Leere Hülle)</td>
+    </tr>
+    <tr>
+      <td>Null</td>
+      <td>Nicht existent</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Wichtig!</strong> JavaScript besitzt eine dynamische Typisierung - Das bedeutet, dass der Datentyp automatisch zu einer Variable zugewiesen wird. Man könnte daher auch annehmen, dass JavaScript eine nicht-typisierte Sprache ist.</p>
+
+<h4 id="beispiele">Beispiele</h4>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">lastName</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">Smith</span><span class="dl">'</span><span class="p">;</span> <span class="c1">// String</span>
+<span class="kd">var</span> <span class="nx">age</span> <span class="o">=</span> <span class="mi">28</span><span class="p">;</span> <span class="c1">// Number</span>
+<span class="kd">var</span> <span class="nx">fullAge</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span> <span class="c1">// Boolean</span>
+</code></pre></div></div>
+<h3 id="mutation-von-variablen-und-typ-zwang">Mutation von Variablen und Typ-Zwang</h3>
+
+<h4 id="typ-zwang">Typ-Zwang</h4>
+
+<p>JavaScript kann Variablen mit einem zugewiesenen Typ automatisch umwandeln, wenn dies benötigt wird. Dies nennt man “Type coercion” (Typ-Zwang). Das kommt z.B. vor, wenn Variablenwerte über die Konsolenausgabe zu Strings umgewandelt werden müssen.</p>
+
+<h4 id="mutation-von-variablen">Mutation von Variablen</h4>
+
+<p>Die Mutation von Variablen bedeutet, den Typen einer Variable zu verändern. Ist z.B. eine Variable mit einem String “belegt”, kann jederzeit die Variable mit einer Nummer neu belegt werden.</p>
+
+<h3 id="basisoperatoren">Basisoperatoren</h3>
+
+<p>Grundsätzlich können alle mathematischen Grundoperatoren auch in JavaScript verwendet werden. Zusätzlich bietet JavaScript jedoch noch weitere Operatoren, wie z.B. logische Operatoren.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Typ</th>
+      <th>Beschreibung</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">+</td>
+      <td>Addition</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">-</td>
+      <td>Subtraktion</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">*</td>
+      <td>Multiplikation</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">/</td>
+      <td>Division</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">&gt;</td>
+      <td>“größer als”</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">&lt;</td>
+      <td>“kleiner als”</td>
+    </tr>
+  </tbody>
+</table>
+:ET
