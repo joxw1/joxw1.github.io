@@ -1,6 +1,8 @@
-I"<p>JavaScript ist eine plattformunabhängige, objekt-orientierte Programmiersprache, die zusammen mit HTML und CSS das “Rückgrat” der Web-Entwicklung darstellt.</p>
+I"<p>Dies ist der erste Teil meiner Notizen über JavaScript Grundlagen. Diese Reihe fange ich an, um noch einmal von Grund auf meine JavaScript Kenntnise aufzufrischen und ein gutes Fundament für das Erlernen von Frameworks wie Angular oder React zu haben.</p>
 
 <h2 id="sektion-1-javascript-basics">Sektion 1: JavaScript Basics</h2>
+
+<p>JavaScript ist eine plattformunabhängige, objekt-orientierte Programmiersprache, die zusammen mit HTML und CSS das “Rückgrat” der Web-Entwicklung darstellt.</p>
 
 <h3 id="primitive-datentypen">Primitive Datentypen</h3>
 

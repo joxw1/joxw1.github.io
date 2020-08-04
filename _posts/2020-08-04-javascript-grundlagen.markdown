@@ -7,9 +7,11 @@ img: js-1.png # Add image post (optional)
 fig-caption: # Add figcaption (optional)
 tags: [JavaScript, Grundlagen]
 ---
-JavaScript ist eine plattformunabhängige, objekt-orientierte Programmiersprache, die zusammen mit HTML und CSS das "Rückgrat" der Web-Entwicklung darstellt.
+Dies ist der erste Teil meiner Notizen über JavaScript Grundlagen. Diese Reihe fange ich an, um noch einmal von Grund auf meine JavaScript Kenntnise aufzufrischen und ein gutes Fundament für das Erlernen von Frameworks wie Angular oder React zu haben.
 
 ## Sektion 1: JavaScript Basics
+
+JavaScript ist eine plattformunabhängige, objekt-orientierte Programmiersprache, die zusammen mit HTML und CSS das "Rückgrat" der Web-Entwicklung darstellt.
 
 ### Primitive Datentypen
 
