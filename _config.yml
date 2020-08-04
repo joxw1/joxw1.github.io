@@ -2,14 +2,14 @@ title: Joshua Wiegmann
 description: > # this means to ignore newlines until "baseurl:"
   from Hannover with ❤️
 permalink: ':title/'
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
-site-twitter: joxw1 #if your site has a twitter account, enter it here
+baseurl: ""
+url: "https://joshuaw.de" 
+site-twitter: joxw1
 
 # Author Settings
 author: Joshua Wiegmann # add your name
 author-img: joshua-wiegmann.png # add your photo
-about-author: Hi! Ich bin Joshua, Softwareentwickler aus Hannover und ich versuche ein Code Ninja zu werden 🏃‍♂️ # add description
+about-author: Hi! Ich bin Joshua, Softwareentwickler aus Hannover und ich versuche ein Code Ninja zu werden 🏃‍♂
 social-twitter: joxw1 # add your Twitter handle
 social-facebook: # add your Facebook handle
 social-github: joxw1 # add your Github handle

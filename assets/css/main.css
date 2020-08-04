@@ -956,16 +956,29 @@ table tfoot td {
   height: 100%;
   -webkit-border-radius: 50%;
           border-radius: 50%;
-  -webkit-transition: -webkit-transform 0.35s;
-  transition: -webkit-transform 0.35s;
-  -o-transition: transform 0.35s;
-  transition: transform 0.35s;
-  transition: transform 0.35s, -webkit-transform 0.35s;
+  -webkit-transition: -webkit-transform 0.35s ease-out;
+  transition: -webkit-transform 0.35s ease-out;
+  -o-transition: transform 0.35s ease-out;
+  transition: transform 0.35s ease-out;
+  transition: transform 0.35s, -webkit-transform 0.35s ease-out;
 }
 
 .about img:hover {
-  -webkit-transform: scale3d(0.9, 0.9, 1);
-          transform: scale3d(0.9, 0.9, 1);
+  animation-name: spin;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+	transform-style: preserve-3d;
+  animation-direction: normal;
+}
+
+@keyframes spin {
+  from {
+    transform: rotateZ(0deg) scale3d(0.9, 0.9, 1); 
+  }
+  to {
+    transform: rotateZ(360deg) scale3d(0.9, 0.9, 1);
+  }
 }
 
 .about .author-name {
