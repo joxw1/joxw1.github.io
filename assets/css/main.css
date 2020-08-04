@@ -960,7 +960,7 @@ table tfoot td {
   transition: -webkit-transform 0.35s ease-out;
   -o-transition: transform 0.35s ease-out;
   transition: transform 0.35s ease-out;
-  transition: transform 0.35s, -webkit-transform 0.35s ease-out;
+  transition: transform 0.35s ease-out, -webkit-transform 0.35s ease-out;
 }
 
 .about img:hover {
@@ -975,9 +975,11 @@ table tfoot td {
 @keyframes spin {
   from {
     transform: rotateZ(0deg) scale3d(0.9, 0.9, 1); 
+    -webkit-transform: rotateZ(0deg) scale3d(0.9, 0.9, 1); 
   }
   to {
     transform: rotateZ(360deg) scale3d(0.9, 0.9, 1);
+    -webkit-transform: rotateZ(0deg) scale3d(0.9, 0.9, 1); 
   }
 }
 
