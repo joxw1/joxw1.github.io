@@ -4,7 +4,7 @@ title: JavaScript Grundlagen II
 date: 2020-08-08 15:24:25 +0300
 description: Zweiter Teil der JavaScript Grundlagen. Es wird noch ein Nachtrag zu Operatoren geliefert und es werden Verzweigungen und Logik eingeführt.
 img: js-2.png # Add image post (optional)
-fig-caption: JavaScript Grundlagen II# Add figcaption (optional)
+fig-caption: JavaScript Grundlagen II
 tags: [JavaScript, Grundlagen, Verzweigungen, Logik]
 ---
 Im zweiten Teil der JavaScript-Grundlagen Notizen, basierend auf dem Kurs von [Jonas](https://www.udemy.com/course/the-complete-javascript-course/) geht es hauptsächlich um Verzweigungen und Operatorlogik. Zunächst jedoch noch ein Nachtrag zu den Basisoperatoren.
