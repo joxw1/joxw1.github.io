@@ -7,7 +7,7 @@ img: js-1.png # Add image post (optional)
 fig-caption: # Add figcaption (optional)
 tags: [JavaScript, Grundlagen]
 ---
-Dies ist der erste Teil meiner Notizen über JavaScript Grundlagen. Diese Reihe fange ich an, um noch einmal von Grund auf meine JavaScript Kenntnise aufzufrischen und ein gutes Fundament für das Erlernen von Frameworks wie Angular oder React zu haben.
+Dies ist der erste Teil meiner Notizen über JavaScript Grundlagen, basierend auf dem Kurs von [Jonas](https://www.udemy.com/course/the-complete-javascript-course/). Diese Reihe fange ich an, um noch einmal von Grund auf meine JavaScript Kenntnise aufzufrischen und ein gutes Fundament für das Erlernen von Frameworks wie Angular oder React zu haben.
 
 ## Sektion 1: JavaScript Basics
 
