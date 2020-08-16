@@ -3,7 +3,7 @@ layout: post
 title: JavaScript Grundlagen II
 date: 2020-08-08 15:24:25 +0300
 description: Zweiter Teil der JavaScript Grundlagen. Es wird noch ein Nachtrag zu Operatoren geliefert und es werden Verzweigungen und Logik eingeführt.
-img: js-2.png # Add image post (optional)
+img: js-2.png
 fig-caption: JavaScript Grundlagen II
 tags: [JavaScript, Grundlagen, Verzweigungen, Logik]
 ---
