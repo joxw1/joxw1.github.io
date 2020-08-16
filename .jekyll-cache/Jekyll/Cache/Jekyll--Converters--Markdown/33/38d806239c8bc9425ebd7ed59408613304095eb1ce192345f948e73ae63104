@@ -1,0 +1,136 @@
+I"1:<p>Im dritten Teil der Grundlagen geht es um Funktionen und Objekte. Dies ist ein fundamentaler Part und schließt damit die Grundlagensektion von <a href="https://www.udemy.com/course/the-complete-javascript-course">Jonas</a> Kurs ab.</p>
+
+<h3 id="funktionen">Funktionen</h3>
+
+<p>Wenn man einen Teilcode öfter ausführen möchte, kann man Funktionen definieren. Diese dienen vorallem dazu, eines der wichtigsten Prinzipien beim Programmieren auszufüllen: <strong>D</strong>ont <strong>R</strong>epeat <strong>Y</strong>ourself (DRY).</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">calculateAge</span><span class="p">(</span><span class="nx">birthYear</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="mi">2018</span> <span class="o">-</span> <span class="nx">birthYear</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h5 id="funktionsanweisungen--funktionsausdrücke">Funktionsanweisungen &amp; Funktionsausdrücke</h5>
+
+<p>Funktionsausdrücke sind eine andere Methode Funktionen zu schreiben.  Man weist damit eine Funktion einer Variable zu.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Function declaration</span>
+<span class="kd">function</span> <span class="nx">whatDoYouDo</span><span class="p">(</span><span class="nx">job</span><span class="p">,</span> <span class="nx">firstName</span><span class="p">)</span> <span class="p">{}</span>
+<span class="c1">// Function expression</span>
+<span class="kd">var</span> <span class="nx">whatDoYouDo</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">job</span><span class="p">,</span> <span class="nx">firstName</span><span class="p">)</span> <span class="p">{}</span>
+</code></pre></div></div>
+
+<p>Funktionsausdrücke liefern immer einen Wert zurück.</p>
+
+<h3 id="arrays">Arrays</h3>
+
+<p>Arrays sind Sammlungen an Werten oder Objekten. Sie werden folgenderweise deklariert.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">names</span> <span class="o">=</span> <span class="p">[</span><span class="dl">'</span><span class="s1">John</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">Mark</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">Jane</span><span class="dl">'</span><span class="p">];</span>
+<span class="kd">var</span> <span class="nx">years</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">(</span><span class="mi">1990</span><span class="p">,</span> <span class="mi">1969</span><span class="p">,</span> <span class="mi">1948</span><span class="p">);</span>
+<span class="c1">//To access an element</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">names</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+<span class="c1">//Specific member variables</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">names</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>Über den Index kann man einen Wert im Array ändern.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">names</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">Ben</span><span class="dl">'</span><span class="p">;</span>
+<span class="nx">names</span><span class="p">[</span><span class="nx">names</span><span class="p">.</span><span class="nx">length</span><span class="p">]</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">Mary</span><span class="dl">'</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Ein besonderes Merkmal, im Vergleich zu anderen Sprachen, ist, dass ein Array unterschiedliche Datentypen halten kann. So kann zum Beispiel ein “Objekt” gebildet werden.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">john</span> <span class="o">=</span> <span class="p">[</span><span class="dl">'</span><span class="s1">John</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">Smith</span><span class="dl">'</span><span class="p">,</span> <span class="mi">1990</span><span class="p">,</span> <span class="dl">'</span><span class="s1">teacher</span><span class="dl">'</span><span class="p">,</span> <span class="kc">false</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p>Für Arrays gibt es bestimmte Methoden, die ein Array standardmäßig mit sich bringt.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">john</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="dl">'</span><span class="s1">blue</span><span class="dl">'</span><span class="p">);</span> <span class="c1">// Adds element to end of array</span>
+<span class="nx">john</span><span class="p">.</span><span class="nx">unshift</span><span class="p">(</span><span class="dl">'</span><span class="s1">Mr.</span><span class="dl">'</span><span class="p">);</span> <span class="c1">// Adds element to start of array</span>
+<span class="nx">john</span><span class="p">.</span><span class="nx">pop</span><span class="p">();</span> <span class="c1">// Removes element from end of array</span>
+<span class="nx">john</span><span class="p">.</span><span class="nx">shift</span><span class="p">();</span> <span class="c1">// Removes element from start of array</span>
+<span class="nx">john</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="mi">1990</span><span class="p">);</span> <span class="c1">// Which position has 1990 in array or -1</span>
+</code></pre></div></div>
+
+<h3 id="objekte">Objekte</h3>
+
+<p>Objekte sind ein sehr wichtiger Teil in der JavaScript Sprache, obwohl man meinen könnte, JavaScript sei nicht objektorientiert. Objekte sind, einfach gesagt, Schlüssel-Werte-Paare.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">john</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">firstName</span><span class="p">:</span> <span class="dl">'</span><span class="s1">John</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">lastName</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Smith</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">birthYear</span><span class="p">:</span> <span class="mi">1990</span><span class="p">,</span>
+    <span class="na">family</span><span class="p">:</span> <span class="p">[</span><span class="dl">'</span><span class="s1">Jane</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">Mark</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">Bob</span><span class="dl">'</span><span class="p">],</span>
+    <span class="na">job</span><span class="p">:</span> <span class="dl">'</span><span class="s1">teacher</span><span class="dl">'</span>
+    <span class="na">isMarried</span><span class="p">:</span> <span class="kc">false</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p><strong><em>Merke:</em></strong> Die geschweiften Klammer nennt man”Object Literals”.</p>
+
+<p>Um auf ein Element aus einem Objekt zuzugreifen, kann zum einen die Punkt-Notation verwenden, oder die Klammern-Notation.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">john</span><span class="p">.</span><span class="nx">firstName</span><span class="p">);</span> <span class="c1">// Dot-Notation</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">john</span><span class="p">[</span><span class="dl">'</span><span class="s1">lastName</span><span class="dl">'</span><span class="p">]);</span> <span class="c1">// Brackets-Notation</span>
+</code></pre></div></div>
+
+<p>Ein anderer Weg Objekte zu definieren ist, ähnlich zu den Arrays, das Objekt explizit zu instanziieren.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">jane</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Object</span><span class="p">();</span>
+<span class="nx">jane</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">Jane</span><span class="dl">'</span><span class="p">;</span>
+<span class="nx">jane</span><span class="p">.</span><span class="nx">birthYear</span> <span class="o">=</span> <span class="mi">1969</span><span class="p">;</span>
+<span class="nx">jane</span><span class="p">[</span><span class="dl">'</span><span class="s1">lastName</span><span class="dl">'</span><span class="p">]</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">Smith</span><span class="dl">'</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h5 id="objektmethoden">Objektmethoden</h5>
+
+<p>Man kann einem Objekt auch Methoden zuweisen. Dies erfolgt folgendermaßen.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">john</span> <span class="o">=</span> <span class="p">{</span>
+	<span class="na">firstName</span><span class="p">:</span> <span class="dl">'</span><span class="s1">John</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">birthYear</span><span class="p">:</span> <span class="mi">1990</span><span class="p">,</span>
+    <span class="na">calcAge</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">birthYear</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="mi">2018</span> <span class="o">-</span> <span class="nx">birthYear</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">john</span><span class="p">.</span><span class="nx">calcAge</span><span class="p">(</span><span class="mi">1990</span><span class="p">));</span>
+</code></pre></div></div>
+
+<p>Um innerhalb der Methoden bestimmte Werte aus einem Objekt zu referenzieren kann das Schlüsselwort “this” verwendet werden.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">john</span> <span class="o">=</span> <span class="p">{</span>
+	<span class="na">firstName</span><span class="p">:</span> <span class="dl">'</span><span class="s1">John</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">birthYear</span><span class="p">:</span> <span class="mi">1990</span><span class="p">,</span>
+    <span class="na">calcAge</span><span class="p">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="mi">2018</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">john</span><span class="p">.</span><span class="nx">calcAge</span><span class="p">());</span>
+</code></pre></div></div>
+
+<h3 id="schleifen">Schleifen</h3>
+
+<p>Schleifen sind ein essentieller Bestandteil einer jeden Programmiersprache und bieten die Möglichkeit, Berechnungen zu skalieren und Code zu reduzieren.</p>
+
+<h6 id="for-schleife">For-Schleife</h6>
+
+<p>Um eine for-Schleifen zu definieren muss man folgenderweise vorgehen.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">john</span> <span class="o">=</span> <span class="p">[</span><span class="dl">'</span><span class="s1">John</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">Smith</span><span class="dl">'</span><span class="p">,</span> <span class="mi">1990</span><span class="p">];</span>
+<span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">3</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">john</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h6 id="while-schleife">While-Schleife</h6>
+
+<p>Eine andere Variante von Schleifen ist die while-Schleife.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="k">while</span><span class="p">(</span><span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">john</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">john</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+	<span class="nx">i</span><span class="o">++</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+:ET

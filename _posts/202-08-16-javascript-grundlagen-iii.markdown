@@ -1,7 +1,7 @@
 ---
 layout: post
 title: JavaScript Grundlagen III
-date: 2020-08-08 15:24:25 +0300
+date: 2020-08-16 22:12:03 +0300
 description: Dritter Teil der JavaScript Grundlagen. Hier werden Funktionen und Objekte näher beleuchtet.
 img: js-3.png
 fig-caption: JavaScript Grundlagen III
