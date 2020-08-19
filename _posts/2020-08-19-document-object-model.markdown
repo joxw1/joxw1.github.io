@@ -34,7 +34,7 @@ __Wichtig:__ "textContent" setzt nur einen reinen Text-Wert. Möchte man HTML-Co
 document.querySelector('#current-0').innerHTML = '<b>5</b>';
 ```
 
-###### Element über ID
+##### Element über ID
 
 Ein anderer Weg, um ein Element auszuwählen, kann die Methode "getElementById(...)" sein. Dazu muss im HTML-Tag, welches man auswählen möchte, eine ID definiert sein.
 
@@ -42,7 +42,7 @@ Ein anderer Weg, um ein Element auszuwählen, kann die Methode "getElementById(.
 document.getElementById('score-0').textContent = '0';
 ```
 
-###### CSS-Style ändern
+##### CSS-Style ändern
 
 Um den Style eines Elements zu ändern, kann man die Member-Variable "style" verwenden.
 
@@ -50,7 +50,7 @@ Um den Style eines Elements zu ändern, kann man die Member-Variable "style" ver
 document.querySelector('.dice').style.display = 'none';
 ```
 
-###### Klassen hinzufügen
+##### Klassen hinzufügen
 
 Man kann einem HTML-Element Klassen hinzufügen (oder entfernen). Außerdem kann man eine Klasse auch togglen (also hinzufügen oder entfernen, je nachdem ob sie schon vorhanden ist).
 
@@ -68,7 +68,7 @@ document.querySelector(`.player`).classList.toggle('active');
 
 Neben dem o.g. Execution Stack gibt es eine Message Queue, in welcher die wartenden Event's abgearbeitet werden (sobald der Stack leer ist). Wenn ein Event aus der Message Queue abgearbeitet wird, wird dies zum neuen Execution Context.
 
-###### Event-Listener hinzufügen
+##### Event-Listener hinzufügen
 
 Um einen Event-Listener zu einem Element hinzufügen, kann man einfach das gewünschte Element über den Query-Selector auswählen und einen Event-Listener hinzufügen.
 

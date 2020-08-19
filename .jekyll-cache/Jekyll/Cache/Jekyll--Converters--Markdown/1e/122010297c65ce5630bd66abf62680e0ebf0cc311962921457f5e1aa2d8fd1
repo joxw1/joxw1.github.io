@@ -1,0 +1,65 @@
+I"<h1 id="document-object-model-dom">Document Object Model (DOM)</h1>
+
+<p>Im nächsten Schritt zu den Java Grundlagen (aus <a href="https://www.udemy.com/course/the-complete-javascript-course/">diesem Kurs</a>) steht das <em>Document Object Model</em>. Dies spiegelt die strukturierte Repräsentation einer HTML-Seite mit dessen Tags und Verschachtelungen dar und ist die Schnittstelle zwischen Webseite und JavaScript.</p>
+
+<p>Um auf das <em>Document Object</em> zuzugreifen, kann man das Schlüsselwort “document” verwenden.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">'</span><span class="s1">#someRandomId</span><span class="dl">'</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h4 id="dom-manipulation">DOM-Manipulation</h4>
+
+<p>Um Elemente aus dem DOM zu manipulieren, kann der o.g. Query-Selector genutzt werden. Mit ihm kann man, wie in CSS, Elemente aus dem DOM auswählen.</p>
+
+<p>Über die Member-Variable “textContent” kann man dann z.B. den textuellen Wert setzen.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">score0</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">`#current-0`</span><span class="p">);</span>
+<span class="nx">score0</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">5</span><span class="dl">'</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p><strong>Wichtig:</strong> “textContent” setzt nur einen reinen Text-Wert. Möchte man HTML-Code in das gewünschte Element setzen, muss die Member-Variable “innerHTML” verwendet werden.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">'</span><span class="s1">#current-0</span><span class="dl">'</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">&lt;b&gt;5&lt;/b&gt;</span><span class="dl">'</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h5 id="element-über-id">Element über ID</h5>
+
+<p>Ein anderer Weg, um ein Element auszuwählen, kann die Methode “getElementById(…)” sein. Dazu muss im HTML-Tag, welches man auswählen möchte, eine ID definiert sein.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">score-0</span><span class="dl">'</span><span class="p">).</span><span class="nx">textContent</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">0</span><span class="dl">'</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h5 id="css-style-ändern">CSS-Style ändern</h5>
+
+<p>Um den Style eines Elements zu ändern, kann man die Member-Variable “style” verwenden.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">'</span><span class="s1">.dice</span><span class="dl">'</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">none</span><span class="dl">'</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h5 id="klassen-hinzufügen">Klassen hinzufügen</h5>
+
+<p>Man kann einem HTML-Element Klassen hinzufügen (oder entfernen). Außerdem kann man eine Klasse auch togglen (also hinzufügen oder entfernen, je nachdem ob sie schon vorhanden ist).</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">`.player`</span><span class="p">).</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="dl">'</span><span class="s1">active</span><span class="dl">'</span><span class="p">);</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">`.player`</span><span class="p">).</span><span class="nx">classList</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="dl">'</span><span class="s1">active</span><span class="dl">'</span><span class="p">);</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">`.player`</span><span class="p">).</span><span class="nx">classList</span><span class="p">.</span><span class="nx">toggle</span><span class="p">(</span><span class="dl">'</span><span class="s1">active</span><span class="dl">'</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h4 id="event-handling">Event-Handling</h4>
+
+<p><strong>Events</strong> sind Benachrichtigungen, die von der Webseite an den “Code” gesendet werden. Diese können z.B. durch einen Buttonklick, einen Tastendruck oder das Verstellen der Fenstergröße ausgelöst werden. Events können durch <strong>Event Listener</strong> abgefangen werden. Dies sind Funktionen, die Aktionen basierend auf dem ausgelösten Event tätigen.</p>
+
+<p><strong>Wichtig:</strong> Ein Event kann erst behandelt werden wenn der <a href="http://davidshariff.com/blog/what-is-the-execution-context-in-javascript/">Execution Stack</a> leer ist!</p>
+
+<p>Neben dem o.g. Execution Stack gibt es eine Message Queue, in welcher die wartenden Event’s abgearbeitet werden (sobald der Stack leer ist). Wenn ein Event aus der Message Queue abgearbeitet wird, wird dies zum neuen Execution Context.</p>
+
+<h5 id="event-listener-hinzufügen">Event-Listener hinzufügen</h5>
+
+<p>Um einen Event-Listener zu einem Element hinzufügen, kann man einfach das gewünschte Element über den Query-Selector auswählen und einen Event-Listener hinzufügen.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">'</span><span class="s1">.btn-roll</span><span class="dl">'</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">click</span><span class="dl">'</span><span class="p">,</span> <span class="nx">event</span> <span class="o">=&gt;</span> <span class="p">{})</span>
+</code></pre></div></div>
+
+<p>Eine Auflistung der Event-Typen (im Beispiel “click”) findet man <a href="https://developer.mozilla.org/de/docs/Web/Events">hier</a>.</p>
+
+:ET
