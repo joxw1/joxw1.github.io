@@ -133,7 +133,7 @@ console.log(john.calcAge());
 
 Schleifen sind ein essentieller Bestandteil einer jeden Programmiersprache und bieten die Möglichkeit, Berechnungen zu skalieren und Code zu reduzieren.
 
-###### For-Schleife
+##### For-Schleife
 
 Um eine for-Schleifen zu definieren muss man folgenderweise vorgehen.
 
@@ -144,7 +144,7 @@ for (var i = 0; i < 3 i++) {
 }
 ```
 
-###### While-Schleife
+##### While-Schleife
 
 Eine andere Variante von Schleifen ist die while-Schleife.
 
