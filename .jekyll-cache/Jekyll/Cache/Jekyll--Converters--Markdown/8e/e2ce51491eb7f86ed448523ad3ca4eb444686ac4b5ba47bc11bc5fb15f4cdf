@@ -113,7 +113,7 @@
 
 <p>Schleifen sind ein essentieller Bestandteil einer jeden Programmiersprache und bieten die Möglichkeit, Berechnungen zu skalieren und Code zu reduzieren.</p>
 
-<h6 id="for-schleife">For-Schleife</h6>
+<h5 id="for-schleife">For-Schleife</h5>
 
 <p>Um eine for-Schleifen zu definieren muss man folgenderweise vorgehen.</p>
 
@@ -123,7 +123,7 @@
 <span class="p">}</span>
 </code></pre></div></div>
 
-<h6 id="while-schleife">While-Schleife</h6>
+<h5 id="while-schleife">While-Schleife</h5>
 
 <p>Eine andere Variante von Schleifen ist die while-Schleife.</p>
 
