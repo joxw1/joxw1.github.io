@@ -139,6 +139,8 @@ teacherQuestion('Rob');
 
 ##### Immediately Invoked Function Expressions (IIFE)
 
+Um definierte Variablen zu "verstecken", falls ein Modul von anderen Programmierern eingebunden werden sollte, gibt es die _Immediately Invoked Function Expressions_. Damit bleibt alles, was in der __IIFE__ definiert wurde, im eigenen Execution Context.
+
 ```javascript
 // Standard declaration
 function game() {
@@ -170,4 +172,54 @@ Eine innere Funktion hat immer Zugriff auf die Variablen und Parameter ihrer äu
  retirementUS(1995);
 ```
 
+##### Call, Apply & Bind
 
+Die _Call_, _Apply_ und _Bind_ Methoden erlauben das manuelle Aufrufen und das Setzen der _this_-Variable. Um dies zu verdeutlichen, hier die Beispiele.
+
+__Call__
+
+Wie man im nachfolgenden Beispiel sieht, kann man mit der _Call_-Methode die _this_-Variable in der Methode auf ein gewünschtes Objekt "umbiegen". Dies ist der erste Parameter in der _Call_-Methode. Dahinter kann man dann die Parameter für den Aufruf eingeben.
+
+```javascript
+const john = {
+  name: 'John',
+  age: 26,
+  job: 'teacher',
+  presentation: function(style, timeOfDay) {
+    if (style === 'formal') {
+      console.log(`Good ${timeOfDay}, Ladies and gentlemen! I'm ${this.name}, 
+      I'm a ${this.job} and I'm ${this.age} years old.`);
+    } else if (style === 'friendly') {
+      console.log(`Hey! What's up? I'm ${this.name}, 
+      I'm a ${this.job} and I'm ${this.age} years old. 
+      Have a nice ${timeOfDay}`);
+    }
+  },
+};
+
+const emily = {
+  name: 'Emily',
+  age: 35,
+  job: 'designer',
+};
+
+john.presentation('formal', 'evening');
+john.presentation.call(emily, 'friendly', 'afternoon'); // Sets the this variable in the presentation function to emily
+```
+
+__Apply__
+
+Diese Methode bietet die Möglichkeit Parameter als Array an die ursprüngliche Methode zu übergeben.
+
+```javascript
+john.presentation.apply(emily, ['formal', 'morning']);
+```
+
+__Bind__
+
+Die _Bind_ Methode ist in der Lage, eine Kopie einer Methode zu erstellen und sie in einer Variable zu speichern. Der Vorteil ist, dass man dabei Parameter festlegen kann und beim Aufruf der kopierten Methode diesen Parameter nicht erneut eingeben muss. 
+
+```javascript
+const johnFriendly = john.presentation.bind(john, 'friendly');
+johnFriendly('morning');
+```
