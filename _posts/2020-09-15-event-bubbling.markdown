@@ -27,6 +27,9 @@ Ein wichtiges Konzept, was man dabei verstehen sollte ist das *_Event Bubbling_*
 </main>
 ```
 
-Wird im oben angegebenen Beispiel ein Event über das `<button>`Element abgefeuert, erreicht das Element auch alle darüber liegenden Elemente. Das heißt, dass ein Event-Handler auch an das `<main>`, `<section>` oder `<p>` Element angehangen werden können.
+Wird im oben angegebenen Beispiel ein Event über das `<button>`Element abgefeuert, erreicht das Element auch alle darüber liegenden Elemente. Das heißt, dass ein Event-Handler auch an das `<main>`, `<section>` oder `<p>` Element angehangen werden können. Aus diesen Elementen heraus, kann man dann überprüfen, woher das Event stammt. Man nennt diese Technik __Event Delegation__.
 
+### Use-Cases
 
+1. Wenn man ein Element mit vielen Kindelementen hat, welche Events abfeuern können, kann man einfach einen Event-Handler an das Elternelement anknüpfen und überprüfen welches Kindelement ein Event abgefeuert hat. So spart man sich die Mühe, an jedes Kindelement einzeln einen Event-Handler anzuknüpfen.
+2. Wenn man einen Event-Handler für ein Element haben möchte, was initial nicht im DOM vorhanden ist. Dies könnte z.B. der Fall sein wenn man nachträglich Elemente über DOM-Manipulation hinzufügt. Mit _Event Delegation_ sorgt man dafür, dass auch für diese Elemente alle Events abgefangen werden können.
