@@ -1,0 +1,28 @@
+I"	<p>Ein Thema über was man als JavaScript-Einsteiger nicht nachdenkt ist, wie genau Events abgefeuert werden und wie der Lebenszyklus von Events im DOM ist.</p>
+
+<p>Ein wichtiges Konzept, was man dabei verstehen sollte ist das <em>_Event Bubbling_</em>. Übersetzen würden man das Konzept mit “Hochsprudeln von Events”. Dabei geht es darum, dass ein Event nicht nur im Ziel-Element (<em>Target Element</em>) abgefangen werden kann, sondern auch in allen Eltern-Elementen.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;main&gt;</span>
+  <span class="nt">&lt;section&gt;</span>
+  	<span class="nt">&lt;p&gt;</span>
+      Lorem ipsum dolor sit
+    <span class="nt">&lt;/p&gt;</span>
+    <span class="nt">&lt;p&gt;</span>
+      Lorem ipsum dolor sit amet
+      <span class="nt">&lt;button&gt;</span>
+        Link
+      <span class="nt">&lt;/button&gt;</span>
+    <span class="nt">&lt;/p&gt;</span>
+  <span class="nt">&lt;/section&gt;</span>
+<span class="nt">&lt;/main&gt;</span>
+</code></pre></div></div>
+
+<p>Wird im oben angegebenen Beispiel ein Event über das <code class="language-plaintext highlighter-rouge">&lt;button&gt;</code>Element abgefeuert, erreicht das Element auch alle darüber liegenden Elemente. Das heißt, dass ein Event-Handler auch an das <code class="language-plaintext highlighter-rouge">&lt;main&gt;</code>, <code class="language-plaintext highlighter-rouge">&lt;section&gt;</code> oder <code class="language-plaintext highlighter-rouge">&lt;p&gt;</code> Element angehangen werden können. Aus diesen Elementen heraus, kann man dann überprüfen, woher das Event stammt. Man nennt diese Technik <strong>Event Delegation</strong>.</p>
+
+<h3 id="use-cases">Use-Cases</h3>
+
+<ol>
+  <li>Wenn man ein Element mit vielen Kindelementen hat, welche Events abfeuern können, kann man einfach einen Event-Handler an das Elternelement anknüpfen und überprüfen welches Kindelement ein Event abgefeuert hat. So spart man sich die Mühe, an jedes Kindelement einzeln einen Event-Handler anzuknüpfen.</li>
+  <li>Wenn man einen Event-Handler für ein Element haben möchte, was initial nicht im DOM vorhanden ist. Dies könnte z.B. der Fall sein wenn man nachträglich Elemente über DOM-Manipulation hinzufügt. Mit <em>Event Delegation</em> sorgt man dafür, dass auch für diese Elemente alle Events abgefangen werden können.</li>
+</ol>
+:ET
