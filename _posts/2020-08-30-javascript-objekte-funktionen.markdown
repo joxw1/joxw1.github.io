@@ -7,8 +7,6 @@ img: objects.jpg
 fig-caption: Objekte und Funktionen
 tags: [JavaScript, Grundlagen, Objekte, Funktionen, IIFE, Closures, Konstruktor]
 ---
-# Java Objekte und Funktionen
-
 In JavaScript gibt es zwei unterschiedliche Art von Datentypen: Grundelemente (_Primitives_) und Objekte (_Objects_). Zahlen (_Numbers_), Zeichenketten (_Strings_), _Booleans_, _Undefined_ und _Null_ sind Grundelemente. Alles andere sind Objekte (z.B. _Arrays_ oder _Funktionen_).
 
 #### Objektorientierte Programmierung

@@ -1,0 +1,24 @@
+I"l<h1 id="event-bubbling">Event Bubbling</h1>
+
+<p>Ein Thema über was man als JavaScript-Einsteiger nicht nachdenkt ist, wie genau Events abgefeuert werden und wie der Lebenszyklus von Events im DOM ist.</p>
+
+<p>Ein wichtiges Konzept, was man dabei verstehen sollte ist das <em>_Event Bubbling_</em>. Übersetzen würden man das Konzept mit “Hochsprudeln von Events”. Dabei geht es darum, dass ein Event nicht nur im Ziel-Element (<em>Target Element</em>) abgefangen werden kann, sondern auch in allen Eltern-Elementen.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;main&gt;</span>
+  <span class="nt">&lt;section&gt;</span>
+  	<span class="nt">&lt;p&gt;</span>
+      Lorem ipsum dolor sit
+    <span class="nt">&lt;/p&gt;</span>
+    <span class="nt">&lt;p&gt;</span>
+      Lorem ipsum dolor sit amet
+      <span class="nt">&lt;button&gt;</span>
+        Link
+      <span class="nt">&lt;/button&gt;</span>
+    <span class="nt">&lt;/p&gt;</span>
+  <span class="nt">&lt;/section&gt;</span>
+<span class="nt">&lt;/main&gt;</span>
+</code></pre></div></div>
+
+<p>Wird im oben angegebenen Beispiel ein Event über das <code class="language-plaintext highlighter-rouge">&lt;button&gt;</code>Element abgefeuert, erreicht das Element auch alle darüber liegenden Elemente. Das heißt, dass ein Event-Handler auch an das <code class="language-plaintext highlighter-rouge">&lt;main&gt;</code>, <code class="language-plaintext highlighter-rouge">&lt;section&gt;</code> oder <code class="language-plaintext highlighter-rouge">&lt;p&gt;</code> Element angehangen werden können.</p>
+
+:ET

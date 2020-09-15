@@ -7,8 +7,6 @@ img: dom.jpg
 fig-caption: Document Object Model
 tags: [JavaScript, Grundlagen, DOM, Manipulation, Events, Event Listener]
 ---
-# Document Object Model (DOM)
-
 Im nächsten Schritt zu den Java Grundlagen (aus [diesem Kurs](https://www.udemy.com/course/the-complete-javascript-course/)) steht das _Document Object Model_. Dies spiegelt die strukturierte Repräsentation einer HTML-Seite mit dessen Tags und Verschachtelungen dar und ist die Schnittstelle zwischen Webseite und JavaScript.
 
 Um auf das _Document Object_ zuzugreifen, kann man das Schlüsselwort "document" verwenden.
