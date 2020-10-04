@@ -3,8 +3,8 @@ layout: post
 title: JavaScript ES6
 date: 2020-10-04 15:40:23 +0300
 description: Notizen zu den neuen Funktionen in ES6.
-img: module-pattern.jpg
-fig-caption: Modul Entwurfsmuster
+img: es6.jpg
+fig-caption: Neue Funktionen in ES6
 tags: [JavaScript, Grundlagen, ES6, ES2015, Blöcke, let, const, String Literals]
 ---
 Mit ES6 (bzw. ES2015) sind einige große Änderungen zur JavaScript Sprache dazugekommen. In diesen Notizen werde ich die wichtigen Änderungen festhalten und kurz mit der Syntax aus ES5 vergleichen. Der Inhalte kommt wieder aus dem Kurs von [Jonas](https://www.udemy.com/course/the-complete-javascript-course/learn/lecture/6034300#overview).
