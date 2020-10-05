@@ -1,4 +1,4 @@
-I"B*<p>Mit ES6 (bzw. ES2015) sind einige große Änderungen zur JavaScript Sprache dazugekommen. In diesen Notizen werde ich die wichtigen Änderungen festhalten und kurz mit der Syntax aus ES5 vergleichen. Der Inhalte kommt wieder aus dem Kurs von <a href="https://www.udemy.com/course/the-complete-javascript-course/learn/lecture/6034300#overview">Jonas</a>.</p>
+I",;<p>Mit ES6 (bzw. ES2015) sind einige große Änderungen zur JavaScript Sprache dazugekommen. In diesen Notizen werde ich die wichtigen Änderungen festhalten und kurz mit der Syntax aus ES5 vergleichen. Der Inhalte kommt wieder aus dem Kurs von <a href="https://www.udemy.com/course/the-complete-javascript-course/learn/lecture/6034300#overview">Jonas</a>.</p>
 
 <h3 id="var---let---const">var - let - const</h3>
 
@@ -83,6 +83,32 @@
 
 <span class="c1">// ES6</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`This is </span><span class="p">${</span><span class="nx">firstName</span><span class="p">}</span><span class="s2"> </span><span class="p">${</span><span class="nx">lastName</span><span class="p">}</span><span class="s2"> - he is </span><span class="p">${</span><span class="nx">calcAge</span><span class="p">(</span><span class="nx">yearOfBirth</span><span class="p">)}</span><span class="s2"> years old`</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>Weiterhin gibt es in ES6 einige neue Methoden für Strings. Nachfolgend sind ein paar aufgelistet.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">firstName</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">John</span><span class="dl">'</span>
+<span class="kd">let</span> <span class="nx">lastName</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">Smith</span><span class="dl">'</span>
+<span class="kd">const</span> <span class="nx">n</span> <span class="o">=</span> <span class="s2">`</span><span class="p">${</span><span class="nx">firstName</span><span class="p">}</span><span class="s2"> </span><span class="p">${</span><span class="nx">lastName</span><span class="p">}</span><span class="s2">`</span><span class="p">;</span>
+<span class="nx">n</span><span class="p">.</span><span class="nx">startsWith</span><span class="p">(</span><span class="dl">'</span><span class="s1">J</span><span class="dl">'</span><span class="p">);</span> <span class="c1">// true</span>
+<span class="nx">n</span><span class="p">.</span><span class="nx">startsWith</span><span class="p">(</span><span class="dl">'</span><span class="s1">j</span><span class="dl">'</span><span class="p">);</span> <span class="c1">// false</span>
+<span class="nx">n</span><span class="p">.</span><span class="nx">endsWith</span><span class="p">(</span><span class="dl">'</span><span class="s1">th</span><span class="dl">'</span><span class="p">);</span> <span class="c1">// true</span>
+<span class="nx">n</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="dl">'</span><span class="s1"> </span><span class="dl">'</span><span class="p">);</span> <span class="c1">// true</span>
+<span class="nx">firstName</span><span class="p">.</span><span class="nx">repeat</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span> <span class="c1">// JohnJohn</span>
+</code></pre></div></div>
+
+<h3 id="arrow-funktionen">Arrow-Funktionen</h3>
+
+<p>Einige wichtige neue Änderung in ES6 sind die Arrow-Funktionen. Sie dienen dazu, Callback-Funktionen kürzer auszudrücken.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">years</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1990</span><span class="p">,</span> <span class="mi">1995</span><span class="p">,</span> <span class="mi">1965</span><span class="p">,</span> <span class="mi">1982</span><span class="p">,</span> <span class="mi">1937</span><span class="p">];</span>
+<span class="c1">// ES5</span>
+<span class="kd">var</span> <span class="nx">ages5</span> <span class="o">=</span> <span class="nx">years</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">elem</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="mi">2020</span> <span class="o">-</span> <span class="nx">elem</span><span class="p">;</span>
+<span class="p">});</span>
+<span class="c1">// ES6</span>
+<span class="kd">let</span> <span class="nx">ages6</span> <span class="o">=</span> <span class="nx">years</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">elem</span> <span class="o">=&gt;</span> <span class="mi">2020</span> <span class="o">-</span> <span class="nx">elem</span><span class="p">);</span>
+<span class="nx">ages6</span> <span class="o">=</span> <span class="nx">years</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">elem</span><span class="p">,</span> <span class="nx">index</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="s2">`Age element </span><span class="p">${</span><span class="nx">index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">}</span><span class="s2">: </span><span class="p">${</span><span class="mi">2020</span> <span class="o">-</span> <span class="nx">elem</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
 </code></pre></div></div>
 
 :ET
