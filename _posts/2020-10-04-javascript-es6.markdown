@@ -98,4 +98,31 @@ console.log('This is '+firstName+' '+lastName+' - he is '+calcAge(yearOfBirth)+'
 console.log(`This is ${firstName} ${lastName} - he is ${calcAge(yearOfBirth)} years old`);
 ```
 
+Weiterhin gibt es in ES6 einige neue Methoden für Strings. Nachfolgend sind ein paar aufgelistet.
+
+```javascript
+let firstName = 'John'
+let lastName = 'Smith'
+const n = `${firstName} ${lastName}`;
+n.startsWith('J'); // true
+n.startsWith('j'); // false
+n.endsWith('th'); // true
+n.includes(' '); // true
+firstName.repeat(2); // JohnJohn
+```
+
+### Arrow-Funktionen
+
+Einige wichtige neue Änderung in ES6 sind die Arrow-Funktionen. Sie dienen dazu, Callback-Funktionen kürzer auszudrücken.
+
+```javascript
+const years = [1990, 1995, 1965, 1982, 1937];
+// ES5
+var ages5 = years.map(function(elem) {
+    return 2020 - elem;
+});
+// ES6
+let ages6 = years.map(elem => 2020 - elem);
+ages6 = years.map((elem, index) => `Age element ${index + 1}: ${2020 - elem}`);
+```
 
