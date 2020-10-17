@@ -1,4 +1,4 @@
-I",;<p>Mit ES6 (bzw. ES2015) sind einige große Änderungen zur JavaScript Sprache dazugekommen. In diesen Notizen werde ich die wichtigen Änderungen festhalten und kurz mit der Syntax aus ES5 vergleichen. Der Inhalte kommt wieder aus dem Kurs von <a href="https://www.udemy.com/course/the-complete-javascript-course/learn/lecture/6034300#overview">Jonas</a>.</p>
+I"�^<p>Mit ES6 (bzw. ES2015) sind einige große Änderungen zur JavaScript Sprache dazugekommen. In diesen Notizen werde ich die wichtigen Änderungen festhalten und kurz mit der Syntax aus ES5 vergleichen. Der Inhalte kommt wieder aus dem Kurs von <a href="https://www.udemy.com/course/the-complete-javascript-course/learn/lecture/6034300#overview">Jonas</a>.</p>
 
 <h3 id="var---let---const">var - let - const</h3>
 
@@ -109,6 +109,76 @@
 <span class="c1">// ES6</span>
 <span class="kd">let</span> <span class="nx">ages6</span> <span class="o">=</span> <span class="nx">years</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">elem</span> <span class="o">=&gt;</span> <span class="mi">2020</span> <span class="o">-</span> <span class="nx">elem</span><span class="p">);</span>
 <span class="nx">ages6</span> <span class="o">=</span> <span class="nx">years</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">elem</span><span class="p">,</span> <span class="nx">index</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="s2">`Age element </span><span class="p">${</span><span class="nx">index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">}</span><span class="s2">: </span><span class="p">${</span><span class="mi">2020</span> <span class="o">-</span> <span class="nx">elem</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>Arrow-Funktion haben kein eigenes <em>this</em>-Schlüsselwort, stattdessen nutzen sie das <em>this</em> aus den Funktionen, die sie aufrufen. Man sagt dazu auch <em>lexikalisches this</em>.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// ES5</span>
+<span class="kd">var</span> <span class="nx">box5</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">color</span><span class="p">:</span> <span class="dl">'</span><span class="s1">green</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">position</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="na">clickMe</span><span class="p">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nb">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span> <span class="c1">// The this in 'clickMe' will point to window</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">'</span><span class="s1">.green</span><span class="dl">'</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">click</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">str</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">This is box number </span><span class="dl">'</span><span class="o">+</span><span class="nb">self</span><span class="p">.</span><span class="nx">position</span><span class="o">+</span> <span class="dl">'</span><span class="s1"> and it is </span><span class="dl">'</span><span class="o">+</span><span class="nb">self</span><span class="p">.</span><span class="nx">color</span><span class="p">;</span>
+      <span class="nx">alert</span><span class="p">(</span><span class="nx">str</span><span class="p">);</span>
+    <span class="p">});</span>
+  <span class="p">},</span>
+<span class="p">};</span>
+
+<span class="nx">box5</span><span class="p">.</span><span class="nx">clickMe</span><span class="p">();</span>
+
+<span class="c1">// ES6</span>
+<span class="kd">var</span> <span class="nx">box6</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">color</span><span class="p">:</span> <span class="dl">'</span><span class="s1">green</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">position</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="na">clickMe</span><span class="p">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">'</span><span class="s1">.green</span><span class="dl">'</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">click</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">str</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">This is box number </span><span class="dl">'</span><span class="o">+</span><span class="k">this</span><span class="p">.</span><span class="nx">position</span><span class="o">+</span> <span class="dl">'</span><span class="s1"> and it is </span><span class="dl">'</span><span class="o">+</span><span class="k">this</span><span class="p">.</span><span class="nx">color</span><span class="p">;</span>
+      <span class="nx">alert</span><span class="p">(</span><span class="nx">str</span><span class="p">);</span>
+    <span class="p">});</span>
+  <span class="p">},</span>
+<span class="p">};</span>
+
+<span class="nx">box6</span><span class="p">.</span><span class="nx">clickMe</span><span class="p">();</span>
+</code></pre></div></div>
+
+<h3 id="destructuring">Destructuring</h3>
+
+<p>In ES6 wurde eine Methode eingeführt, Datenstrukturen zu dekonstruieren. Das bedeutet, dass bereits initialisiert Datenstrukturen in ihre Einzelteile aufgeteilt werden können. So kann man z.B. Variablen in ihre Bestandteile zerlegen um die Bestandteile weiter zu verarbeiten.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// ES5</span>
+<span class="kd">var</span> <span class="nx">john</span> <span class="o">=</span> <span class="p">[</span><span class="dl">'</span><span class="s1">John</span><span class="dl">'</span><span class="p">,</span> <span class="mi">24</span><span class="p">];</span>
+<span class="kd">var</span> <span class="nx">name5</span> <span class="o">=</span> <span class="nx">john</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+<span class="kd">var</span> <span class="nx">age5</span> <span class="o">=</span> <span class="nx">john</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+
+<span class="c1">// ES6</span>
+<span class="kd">const</span> <span class="p">[</span><span class="nx">name6</span><span class="p">,</span> <span class="nx">age6</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="dl">'</span><span class="s1">John</span><span class="dl">'</span><span class="p">,</span> <span class="mi">24</span><span class="p">];</span>
+
+<span class="kd">const</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">firstName</span><span class="p">:</span> <span class="dl">'</span><span class="s1">John</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">lastName</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Smith</span><span class="dl">'</span><span class="p">,</span>
+<span class="p">};</span>
+
+<span class="kd">const</span> <span class="p">{</span><span class="nx">firstName</span><span class="p">,</span> <span class="nx">lastName</span><span class="p">}</span> <span class="o">=</span> <span class="nx">obj</span><span class="p">;</span>
+<span class="kd">const</span> <span class="p">{</span><span class="na">fistName</span><span class="p">:</span> <span class="nx">a</span><span class="p">,</span> <span class="na">lastName</span><span class="p">:</span> <span class="nx">b</span><span class="p">}</span> <span class="o">=</span> <span class="nx">obj</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="arrays">Arrays</h3>
+
+<p>Auch Arrays wurden in ES6 mit neuen Methoden ausgestattet. Nachfolgend wird ein nützliches Beispiel betrachtet.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">boxes</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="dl">'</span><span class="s1">.box</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="c1">// ES5</span>
+<span class="kd">var</span> <span class="nx">boxesArr5</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">slice</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">boxes</span><span class="p">);</span>
+<span class="nx">boxesArr5</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">cur</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">cur</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">backgroundColor</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">dodgerblue</span><span class="dl">'</span><span class="p">;</span>
+<span class="p">});</span>
+
+<span class="c1">// ES6</span>
+<span class="kd">const</span> <span class="nx">boxesArr6</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="k">from</span><span class="p">(</span><span class="nx">boxes</span><span class="p">);</span>
+<span class="nx">boxesArr6</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">cur</span> <span class="o">=&gt;</span> <span class="nx">cur</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">backgroundColor</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">dodgerblue</span><span class="dl">'</span><span class="p">);</span>
 </code></pre></div></div>
 
 :ET

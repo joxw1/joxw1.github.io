@@ -126,3 +126,76 @@ let ages6 = years.map(elem => 2020 - elem);
 ages6 = years.map((elem, index) => `Age element ${index + 1}: ${2020 - elem}`);
 ```
 
+Arrow-Funktion haben kein eigenes _this_-Schlüsselwort, stattdessen nutzen sie das _this_ aus den Funktionen, die sie aufrufen. Man sagt dazu auch _lexikalisches this_.
+
+```javascript
+// ES5
+var box5 = {
+  color: 'green',
+  position: 1,
+  clickMe: function() {
+    var self = this; // The this in 'clickMe' will point to window
+    document.querySelector('.green').addEventListener('click', function() {
+      var str = 'This is box number '+self.position+ ' and it is '+self.color;
+      alert(str);
+    });
+  },
+};
+
+box5.clickMe();
+
+// ES6
+var box6 = {
+  color: 'green',
+  position: 1,
+  clickMe: function() {
+    document.querySelector('.green').addEventListener('click', () => {
+      var str = 'This is box number '+this.position+ ' and it is '+this.color;
+      alert(str);
+    });
+  },
+};
+
+box6.clickMe();
+```
+
+### Destructuring
+
+In ES6 wurde eine Methode eingeführt, Datenstrukturen zu dekonstruieren. Das bedeutet, dass bereits initialisiert Datenstrukturen in ihre Einzelteile aufgeteilt werden können. So kann man z.B. Variablen in ihre Bestandteile zerlegen um die Bestandteile weiter zu verarbeiten.
+
+```javascript
+// ES5
+var john = ['John', 24];
+var name5 = john[0];
+var age5 = john[1];
+
+// ES6
+const [name6, age6] = ['John', 24];
+
+const obj = {
+  firstName: 'John',
+  lastName: 'Smith',
+};
+
+const {firstName, lastName} = obj;
+const {fistName: a, lastName: b} = obj;
+```
+
+### Arrays
+
+Auch Arrays wurden in ES6 mit neuen Methoden ausgestattet. Nachfolgend wird ein nützliches Beispiel betrachtet.
+
+```javascript
+const boxes = document.querySelectorAll('.box');
+
+// ES5
+var boxesArr5 = Array.prototype.slice.call(boxes);
+boxesArr5.forEach(function(cur) {
+  cur.style.backgroundColor = 'dodgerblue';
+});
+
+// ES6
+const boxesArr6 = Array.from(boxes);
+boxesArr6.forEach(cur => cur.style.backgroundColor = 'dodgerblue');
+```
+
