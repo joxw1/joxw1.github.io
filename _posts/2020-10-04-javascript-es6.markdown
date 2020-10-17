@@ -183,7 +183,7 @@ const {fistName: a, lastName: b} = obj;
 
 ### Arrays
 
-Auch Arrays wurden in ES6 mit neuen Methoden ausgestattet. Nachfolgend wird ein nützliches Beispiel betrachtet.
+Auch Arrays wurden in ES6 mit neuen Methoden ausgestattet. Nachfolgend werden einige betrachtet.
 
 ```javascript
 const boxes = document.querySelectorAll('.box');
@@ -199,3 +199,61 @@ const boxesArr6 = Array.from(boxes);
 boxesArr6.forEach(cur => cur.style.backgroundColor = 'dodgerblue');
 ```
 
+### Spread-Operator
+
+Der neu eingeführte **Spread-Operator** kann dazu genutzt werden, Arrays als Parameter zu entpacken. So spart man sich das Herausziehen der einzelnen Werte oder das Nutzen der *apply*-Methode einer Funktion.
+
+```javascript
+function addFourAges(a, b, c, d) {
+  return a + b + c + d;
+}
+
+var sum1 = addFourAges(18, 30, 12, 21);
+
+// ES5
+var ages = [18, 30, 12, 21];
+var sum2 = addFourAges.apply(null, ages);
+console.log(sum2);
+
+// ES6
+const sum3 = addFourAges(...ages);
+console.log(sum3);
+```
+
+Außerdem kann man mit dem *Spread-Operator* auch Arrays joinen.
+
+```javascript
+const familySmith = ['John', 'Jane', 'Mark'];
+
+const familyMiller = ['Mary', 'Bob', 'Ann'];
+
+const bigFamily = [...familySmith, ...familyMiller];
+```
+
+###  Funktionsparameter
+
+Eine weitere Neuerung in ES6 sind Parameteranpassungen. Sie erlauben einige Vereinfachungen für Lösungen aus ES5.
+
+#### Rest-Parameter
+
+Rest-Parameter erlauben das Übergeben einer beliebigen Anzahl an Parameter an eine Funktion. Diese können dann in der Funktion verwendet werden. Von der Notation her, sehen die Rest-Parameter aus wie der *Spread-Operator*, da die Parameter auch mit drei Punkten starten. Der Effekt ist jedoch genau das Gegenteil. Es werden viele einzelnen Parameter zu einem Arrays zusammengefasst. Nachfolgend ist ein Beispiel zu sehen.
+
+```javascript
+// ES5
+function isFullAge5() {
+  // console.log(arguments);
+  var argsArr = Array.prototype.slice.call(arguments);
+  argsArr.forEach(function(cur) {
+    console.log((2020 - cur) >= 18);
+  });
+}
+
+isFullAge5(2007, 1995, 1989);
+
+// ES6
+function isFullAge6(...args) {
+  args.forEach((cur) => console.log((2020 - cur) >= 18));
+}
+
+isFullAge6(1995, 2008, 2001);
+```
