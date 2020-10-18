@@ -1,0 +1,2 @@
+I"�<p>Ein großer Bestandteil in der JavaScript-Programmierung ist die Behandlung von Web-Requests und dessen Responses. Da dies meist in Echtzeit passiert, ist es unerlässlich einen asynchronen Abarbeitungsfluss zu programmieren. Das bedeutet, man kann die Antwort eines Requests erst verarbeiten, wenn die Antwort auch da ist. In diesen Notizen sollen die asynchronen Prozessabläufe in JavaScript festgehalten werden.</p>
+:ET

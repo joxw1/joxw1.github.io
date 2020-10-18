@@ -289,7 +289,7 @@ console.log(john);
 
 Eine neue Datenstruktur in ES6 ist die Map. Es ist eine Schlüssel-Werte-Paar Datenstruktur, in der alles als Schlüssel verwendet werden kann.
 
-```JAVASCRIPT
+```javascript
 // Quiz as example
 const question = new Map();
 question.set('question', `What is the official 
