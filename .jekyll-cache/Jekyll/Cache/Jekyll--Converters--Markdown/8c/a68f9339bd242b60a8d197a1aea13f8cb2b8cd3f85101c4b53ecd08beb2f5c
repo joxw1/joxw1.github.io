@@ -1,0 +1,163 @@
+I"76<p>Ich habe vor kurzem einen interessanten Artikel über CSS Variablen gelesen und würde die Informationen aus diesem Artikel gerne hier festhalten. Für das Original bitte <a href="https://ishadeed.com/article/css-vars-101/">hier</a> klicken.</p>
+
+<p>CSS Variablen dienen der Komplexitätsreduktion und des Herunterschraubens von Redundanz. Sie ermöglichen eine Wiederverwertung von bestimmten Werten, die häufiger in einem Stylesheet auftauchen. Ahmad hat in seinem Artikel viele interessante Beispiele, die ich hier übernehme.</p>
+
+<p>Als Beispiel:</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.section</span> <span class="p">{</span>
+  <span class="nl">border</span><span class="p">:</span> <span class="m">2px</span> <span class="nb">solid</span> <span class="m">#235ad1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.section-title</span> <span class="p">{</span>
+  <span class="nl">color</span><span class="p">:</span> <span class="m">#235ad1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.section-title</span><span class="nd">::before</span> <span class="p">{</span>
+  <span class="nl">content</span><span class="p">:</span> <span class="s1">""</span><span class="p">;</span>
+  <span class="nl">display</span><span class="p">:</span> <span class="n">inline-block</span><span class="p">;</span>
+  <span class="nl">width</span><span class="p">:</span> <span class="m">20px</span><span class="p">;</span>
+  <span class="nl">height</span><span class="p">:</span> <span class="m">20px</span><span class="p">;</span>
+  <span class="nl">background-color</span><span class="p">:</span> <span class="m">#235ad1</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Man sieht, dass die Farbe <code class="language-plaintext highlighter-rouge">#235ad1</code> insgesamt dreimal auftaucht. Das könnte man vereinfachen, in dem man eine Variable nutzt. Sie wird in einem Block mit einem Doppelstrich deklariert, wie man im nachfolgenden Beispiel sieht.</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">:root</span> <span class="p">{</span>
+  <span class="py">--color-primary</span><span class="p">:</span> <span class="m">#235ad1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.section</span> <span class="p">{</span>
+  <span class="nl">border</span><span class="p">:</span> <span class="m">2px</span> <span class="nb">solid</span> <span class="n">var</span><span class="p">(</span><span class="n">--color-primary</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nc">.section-title</span> <span class="p">{</span>
+  <span class="nl">color</span><span class="p">:</span> <span class="n">var</span><span class="p">(</span><span class="n">--color-primary</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nc">.section-title</span><span class="nd">::before</span> <span class="p">{</span>
+  <span class="c">/* Other styles */</span>
+  <span class="nl">background-color</span><span class="p">:</span> <span class="n">var</span><span class="p">(</span><span class="n">--color-primary</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>So sieht es schon deutlich schöner aus und man hat das Prinzip <em>Don’t Repeat Yourself</em> beachtet.</p>
+
+<h3 id="benennung">Benennung</h3>
+
+<p>Wichtig ist, wie bei anderen Programmiersprachen, die richtige Benennung der Variablen. Es sind alphanumerische Zeichen, Unterstriche und Bindestreiche erlaubt. Leerzeichen und Sonderzeichen dürfen zuhause bleiben 🚫.</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">/* Valid names */</span>
+<span class="nd">:root</span> <span class="p">{</span>
+	<span class="py">--primary-color</span><span class="p">:</span> <span class="m">#222</span><span class="p">;</span>
+	<span class="py">--_primary-color</span><span class="p">:</span> <span class="m">#222</span><span class="p">;</span>
+	<span class="py">--12-primary-color</span><span class="p">:</span> <span class="m">#222</span><span class="p">;</span>
+	<span class="py">--primay-color-12</span><span class="p">:</span> <span class="m">#222</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c">/* Invalid names */</span>
+<span class="nd">:root</span> <span class="p">{</span>
+	<span class="err">--primary</span> <span class="nl">color</span><span class="p">:</span> <span class="m">#222</span><span class="p">;</span> <span class="c">/* Spacings are not allowed */</span>
+	<span class="err">--primary$%#%$#</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="geltungsbereiche">Geltungsbereiche</h3>
+
+<p>Bei CSS Variablen gibt es auch unterschiedliche Geltungsbereiche. Eine Variable kann in einem Deklarationsblock überschrieben werden. Im nachfolgenden Beispiel sieht man, dass die <code class="language-plaintext highlighter-rouge">--primary-color</code> Variable in der <code class="language-plaintext highlighter-rouge">.section-title</code> Klasse überschrieben wird. Der Wert gilt dann nur in dem Block, in dem es neu definiert wurde.</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">:root</span> <span class="p">{</span>
+  <span class="py">--primary-color</span><span class="p">:</span> <span class="m">#235ad1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.section-title</span> <span class="p">{</span>
+  <span class="py">--primary-color</span><span class="p">:</span> <span class="n">d12374</span><span class="p">;</span>
+  <span class="nl">color</span><span class="p">:</span> <span class="n">var</span><span class="p">(</span><span class="n">--primary-color</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="fallback">Fallback</h3>
+
+<p>Bisher wurde die <code class="language-plaintext highlighter-rouge">var</code>-Funktion immer nur mit einem Parameter beachtet. Man kann jedoch noch einen zweiten, sehr nützlichen Parameter übergeben - den <strong>Fallback</strong>-Wert. Dieser Wert wird genutzt, wenn der Wert der Variable nicht genutzt bzw. ermittelt werden kann. Man kann dies auch mit einem erneuten <code class="language-plaintext highlighter-rouge">var</code>-Aufruf verketten.</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">/* Normal fallback value */</span>
+<span class="nc">.section-title</span> <span class="p">{</span>
+  <span class="nl">color</span><span class="p">:</span> <span class="n">var</span><span class="p">(</span><span class="n">--primary-color</span><span class="p">,</span> <span class="m">#222</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="c">/* Chained call */</span>
+<span class="nc">.section-title</span> <span class="p">{</span>
+  <span class="nl">color</span><span class="p">:</span> <span class="n">var</span><span class="p">(</span><span class="n">--primary-color</span><span class="p">,</span> <span class="n">var</span><span class="p">(</span><span class="n">--black</span><span class="p">,</span> <span class="m">#222</span><span class="p">));</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="use-cases">Use-Cases</h3>
+
+<p>Ahmad hat in seinem Artikel bereits coole Use-Cases mitgeliefert. Ich habe diese  Sachen in Codepen’s nachimplementiert um ein Gefühl dafür zu bekommen, wie es zu nutzen ist.</p>
+
+<h4 id="größe-von-elementen">Größe von Elementen</h4>
+
+<p>Das erste Beispiel ist, die Größe von Elementen dynamisch anhand ihrer gesetzten Klasse zu verändern. Man nutzt dabei gezielt den Geltungsbereich (<strong>Scope</strong>) der Variablen.</p>
+
+<p>Im nachfolgenden Beispiel sieht man, dass in der Hauptklasse <code class="language-plaintext highlighter-rouge">.button</code> ein Padding definiert ist, welches von der Variable <code class="language-plaintext highlighter-rouge">--unit</code> abhängt. Initial ist die Einheit <code class="language-plaintext highlighter-rouge">1rem</code> groß. Möchte man nun einen kleineren/größeren Typ des Buttons erstellen, reicht es, die <code class="language-plaintext highlighter-rouge">--unit</code>-Variable zu überschreiben.</p>
+
+<p class="codepen" data-height="265" data-theme-id="dark" data-default-tab="css,result" data-user="joxwi" data-slug-hash="WNxxJEz" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="CSS Variables - Size of elements">
+  <span>See the Pen <a href="https://codepen.io/joxwi/pen/WNxxJEz">
+  CSS Variables - Size of elements</a> by Joshua Wiegmann (<a href="https://codepen.io/joxwi">@joxwi</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async="" src="https://static.codepen.io/assets/embed/ei.js"></script>
+
+<h4 id="farbe-von-elementen">Farbe von Elementen</h4>
+
+<p>Ein anderes schönes Beispiel ist die dynamische Anpassung von Farben über CSS Variablen.</p>
+
+<p>Im Beispiel ist die Hintergrundfarbe über die <code class="language-plaintext highlighter-rouge">hsl</code>-Funktion gesetzt. Der Wert der Funktion besteht aus Farbton, Sättigung und Helligkeit. Sind diese Werte, wie im Beispiel zu sehen, über Variablen gesetzt, kann man einzelne Werte dynamisch anpassen. Hier wird die Helligkeit heruntergesetzt, sobald man über den Button hovert. Das ist ziemlich cool, da man Farbton und Sättigung somit behält und einen schönen Effekt erzielt.</p>
+
+<p class="codepen" data-height="265" data-theme-id="dark" data-default-tab="css,result" data-user="joxwi" data-slug-hash="YzWWvea" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="CSS Variables - Color of element">
+  <span>See the Pen <a href="https://codepen.io/joxwi/pen/YzWWvea">
+  CSS Variables - Color of element</a> by Joshua Wiegmann (<a href="https://codepen.io/joxwi">@joxwi</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async="" src="https://static.codepen.io/assets/embed/ei.js"></script>
+
+<h4 id="proportionale-größenänderung">Proportionale Größenänderung</h4>
+
+<p>Dieses Beispiel ist auch sehr cool. Man kann sich die Wiederverwendung von Variablen zu nutze machen, um Breite und Höhe eines Elements immer proportional zueinander zu halten.</p>
+
+<p>Im nachfolgenden Pen habe ich versucht, dies dynamisch zu bauen.</p>
+
+<p class="codepen" data-height="265" data-theme-id="light" data-default-tab="css,result" data-user="joxwi" data-slug-hash="BazzPdo" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="CSS Variables - Proportional Resize">
+  <span>See the Pen <a href="https://codepen.io/joxwi/pen/BazzPdo">
+  CSS Variables - Proportional Resize</a> by Joshua Wiegmann (<a href="https://codepen.io/joxwi">@joxwi</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async="" src="https://static.codepen.io/assets/embed/ei.js"></script>
+
+<h4 id="light-mode-und-dark-mode">Light-Mode und Dark-Mode</h4>
+
+<p>Ein anderer interessanter Use-Case ist das Umschalten von Light-Mode und Dark-Mode. Man muss dazu lediglich ein Farbschema für die Variablen festsetzen und diese Variablen durchgängig benutzen und kann damit leicht zwischen den beiden Modi durchtogglen. Ich habe mal versucht, ein Minimalbeispiel in einen Pen zu packen.</p>
+
+<p class="codepen" data-height="265" data-theme-id="light" data-default-tab="css,result" data-user="joxwi" data-slug-hash="bGeejxB" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="CSS Variables: Switch mode">
+  <span>See the Pen <a href="https://codepen.io/joxwi/pen/bGeejxB">
+  CSS Variables: Switch mode</a> by Joshua Wiegmann (<a href="https://codepen.io/joxwi">@joxwi</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async="" src="https://static.codepen.io/assets/embed/ei.js"></script>
+
+<h4 id="animationen">Animationen</h4>
+
+<p>Ein weiteres Beispiel für das Nutzen von Variablen ist für Animationen. Man kann die Variablen in den Keyframes nutzen und die Animation so, je nach aktivierter Klasse, verändern. Damit lassen sich interessante Effekte erzielen. Ein kleines Beispiel ist nachfolgend gezeigt.</p>
+
+<p class="codepen" data-height="265" data-theme-id="dark" data-default-tab="css,result" data-user="joxwi" data-slug-hash="gOMMZqX" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="CSS Variables - Animations">
+  <span>See the Pen <a href="https://codepen.io/joxwi/pen/gOMMZqX">
+  CSS Variables - Animations</a> by Joshua Wiegmann (<a href="https://codepen.io/joxwi">@joxwi</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async="" src="https://static.codepen.io/assets/embed/ei.js"></script>
+
+<h3 id="zusammenfassung">Zusammenfassung</h3>
+
+<p>Das waren meine Notizen zum Post von Ahmad. Dabei habe ich längst nicht alles aufgeschrieben, was an Inhalt im Original-Post drin war - daher lohnt sich der <a href="https://ishadeed.com/article/css-vars-101/">Blick in den Post nochmal sehr</a>, um alles detailliert nachzulesen.</p>
+
+<p>Für die Codepens in diesen Artikel <a href="https://codepen.io/collection/DEzrEJ">habe ich eine Collection angelegt</a>.</p>
+:ET
