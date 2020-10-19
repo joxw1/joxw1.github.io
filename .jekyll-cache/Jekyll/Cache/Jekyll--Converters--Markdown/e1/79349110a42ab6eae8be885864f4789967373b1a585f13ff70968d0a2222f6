@@ -1,4 +1,4 @@
-I"�<p>Ein großer Bestandteil in der JavaScript-Programmierung ist die Behandlung von Web-Requests und dessen Responses. Da dies meist in Echtzeit passiert, ist es unerlässlich einen asynchronen Abarbeitungsfluss zu programmieren. Das bedeutet, man kann die Antwort eines Requests erst verarbeiten, wenn die Antwort auch da ist. In diesen Notizen sollen die asynchronen Prozessabläufe in JavaScript festgehalten werden.</p>
+I"�<p>Ein großer Bestandteil in der JavaScript-Programmierung ist die Behandlung von Web-Requests und dessen Responses. Da dies meist in Echtzeit passiert, ist es unerlässlich einen asynchronen Abarbeitungsfluss zu programmieren. Das bedeutet, man kann die Antwort eines Requests erst verarbeiten, wenn die Antwort auch da ist. In diesen Notizen sollen die asynchronen Prozessabläufe in JavaScript festgehalten werden.</p>
 
 <h3 id="synchron-vs-asynchron">Synchron vs. Asynchron</h3>
 
@@ -26,5 +26,18 @@
   <span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="dl">'</span><span class="s1">Error!</span><span class="dl">'</span><span class="p">);</span>
 	<span class="p">});</span>
+</code></pre></div></div>
+
+<h3 id="asyncawait">Async/Await</h3>
+
+<p>In ES8 (ES2017) wurde eine neue Syntax eingeführt, um das konsumieren von Promises zu vereinfachen. Mit dem <strong>async</strong> Schlüsselwort können asynchrone Funktionen deklariert werden, in welchen das <strong>await</strong> Schlüsselwort genutzt werden kann. Mit diesem Schlüsselwort wartet der Prozess, bis das Promise, auf welches gewartet wird, im Status <em>Erledigt</em> ist.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">async</span> <span class="kd">function</span> <span class="nx">getRecipesAW</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">ids</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">getIds</span><span class="p">;</span>
+  <span class="kd">const</span> <span class="nx">recipe</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">getRecipe</span><span class="p">(</span><span class="nx">ids</span><span class="p">);</span>
+  <span class="kd">const</span> <span class="nx">related</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">getRelated</span><span class="p">(</span><span class="nx">recipe</span><span class="p">.</span><span class="nx">publisher</span><span class="p">);</span>
+  <span class="k">return</span> <span class="nx">related</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">getRecipesAW</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="nx">value</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">value</span><span class="p">));</span>
 </code></pre></div></div>
 :ET

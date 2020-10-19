@@ -37,3 +37,17 @@ getIds
   console.error('Error!');
 	});
 ```
+
+### Async/Await
+
+In ES8 (ES2017) wurde eine neue Syntax eingeführt, um das konsumieren von Promises zu vereinfachen. Mit dem **async** Schlüsselwort können asynchrone Funktionen deklariert werden, in welchen das **await** Schlüsselwort genutzt werden kann. Mit diesem Schlüsselwort wartet der Prozess, bis das Promise, auf welches gewartet wird, im Status *Erledigt* ist.
+
+```javascript
+async function getRecipesAW() {
+  const ids = await getIds;
+  const recipe = await getRecipe(ids);
+  const related = await getRelated(recipe.publisher);
+  return related;
+}
+getRecipesAW().then(value => console.log(value));
+```
