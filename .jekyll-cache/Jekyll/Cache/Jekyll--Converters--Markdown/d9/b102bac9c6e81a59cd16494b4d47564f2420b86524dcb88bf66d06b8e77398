@@ -1,0 +1,88 @@
+I"67<p>Ein großer Bestandteil in der JavaScript-Programmierung ist die Behandlung von Web-Requests und dessen Responses. Da dies meist in Echtzeit passiert, ist es unerlässlich einen asynchronen Abarbeitungsfluss zu programmieren. Das bedeutet, man kann die Antwort eines Requests erst verarbeiten, wenn die Antwort auch da ist. In diesen Notizen sollen die asynchronen Prozessabläufe in JavaScript festgehalten werden.</p>
+
+<h3 id="synchron-vs-asynchron">Synchron vs. Asynchron</h3>
+
+<p>Ein synchroner Prozessablauf ist ein standardmäßiges Programm, welches Zeile für Zeile abgearbeitet wird. Es gibt dabei nur einen einzelnen Thread, welcher im Browser abgearbeitet wird. Im Gegensatz dazu, versucht man mit einem asynchronen Prozessablauf, bestimmten Code im Hintergrund laufen zu lassen bis ein Ergebnis berechnet wurde. Dafür übergibt man meist eine Callback-Funktion, die bei Fertigstellung aufgerufen wird. So wird das Programm an keiner Stelle blockiert, sondern läuft nahtlos weiter.</p>
+
+<h3 id="promises">Promises</h3>
+
+<p>Ein <strong>Promise</strong> ist ein Objekt, welches den Überblick darüber behält, ob ein Event bereits abgeschlossen ist oder nicht. Außerdem entscheidet das Objekt, was passieren soll, wenn das zu überwachende Event abgeschlossen ist. Dabei beinhaltet das <strong>Promise</strong> den Wert, der vom Event zurückgegeben wird.</p>
+
+<p>Dadurch, dass ein Promise davon abhängt, ob ein Event abgeschlossen ist, gibt es auch unterschiedliche Zustände davon. Bevor ein Event ausgelöst wird, ist ein Promise noch im Zustand <em>Wartend (Pending)</em>. Ist das Event dann abgeschlossen, ist das Promise im Zustand <em>Erledigt/Gelöst (Settled/Resolved)</em>. Je nachdem, ob das Event erfolgreich war, ist das Promise in einem anderen Zustand nachdem das Event erledigt wurde. Wenn das Event erfolgreich abgeschlossen wurde, ist das Promise im Zustand <em>Erfüllt (Fulfilled)</em>. Falls ein Fehler auftritt ist, es im Zustand <em>Zurückgewiesen (Rejected)</em>.</p>
+
+<p>Durch diesen Zustandsgraphen ergibt sich auch ein bestimmter Terminus, wie Promise genutzt werden. Wird ein Promise angelegt, wird es <strong>produziert</strong>. Das bedeutet, man legt es an, ohne den Ausgangswert zu kennen. Wenn der Ausgangswert klar ist, kann dieses Promise <strong>konsumiert</strong> werden.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">getIds</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">resolve</span><span class="p">(</span>
+      <span class="p">[</span><span class="mi">239</span><span class="p">,</span> <span class="mi">123</span><span class="p">,</span> <span class="mi">994</span><span class="p">,</span> <span class="mi">122</span><span class="p">,</span> <span class="mi">32</span><span class="p">]</span>
+    <span class="p">);</span>
+  <span class="p">},</span> <span class="mi">1500</span><span class="p">);</span>
+<span class="p">});</span>
+<span class="nx">getIds</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">ids</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">ids</span><span class="p">);</span>
+	<span class="p">})</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="dl">'</span><span class="s1">Error!</span><span class="dl">'</span><span class="p">);</span>
+	<span class="p">});</span>
+</code></pre></div></div>
+
+<h3 id="asyncawait">Async/Await</h3>
+
+<p>In ES8 (ES2017) wurde eine neue Syntax eingeführt, um das konsumieren von Promises zu vereinfachen. Mit dem <strong>async</strong> Schlüsselwort können asynchrone Funktionen deklariert werden, in welchen das <strong>await</strong> Schlüsselwort genutzt werden kann. Mit diesem Schlüsselwort wartet der Prozess, bis das Promise, auf welches gewartet wird, im Status <em>Erledigt</em> ist.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">async</span> <span class="kd">function</span> <span class="nx">getRecipesAW</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">ids</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">getIds</span><span class="p">;</span>
+  <span class="kd">const</span> <span class="nx">recipe</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">getRecipe</span><span class="p">(</span><span class="nx">ids</span><span class="p">);</span>
+  <span class="kd">const</span> <span class="nx">related</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">getRelated</span><span class="p">(</span><span class="nx">recipe</span><span class="p">.</span><span class="nx">publisher</span><span class="p">);</span>
+  <span class="k">return</span> <span class="nx">related</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">getRecipesAW</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="nx">value</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">value</span><span class="p">));</span>
+</code></pre></div></div>
+
+<h3 id="ajax">AJAX</h3>
+
+<p>AJAX steht für <em>Asynchronous JavaScript And XML</em> und wird dazu genutzt, mit einer API (<em>Application Programming Interface</em>) zu kommunizieren. AJAX-Aufrufe kann man mit der <em>fetch</em>-Funktion ausführen. Wie das geht, ist nachfolgend gezeigt.</p>
+
+<p><strong>Hinweis:</strong> Zu beachten ist die <em>Same-Origin-Policy</em> in JavaScript. Es hindert daran, aus einer bestimmten Domain Requests auf eine andere Domain zu schicken. Um das zu erlauben, muss man <em>Cross Origin Resource Sharing (CORS)</em> aktivieren.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kd">function</span> <span class="nx">getWeather</span><span class="p">(</span><span class="nx">woeid</span><span class="p">)</span> <span class="p">{</span>
+     <span class="nx">fetch</span><span class="p">(</span><span class="s2">`https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/</span><span class="p">${</span><span class="nx">woeid</span><span class="p">}</span><span class="s2">`</span><span class="p">)</span>
+         <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">result</span> <span class="o">=&gt;</span> <span class="nx">result</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
+         <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">data</span> <span class="o">=&gt;</span> <span class="p">{</span>
+         <span class="kd">const</span> <span class="nx">today</span> <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">consolidated_weather</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+         <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`Temperatures in </span><span class="p">${</span><span class="nx">data</span><span class="p">.</span><span class="nx">title</span><span class="p">}</span><span class="s2"> stay between </span><span class="p">${</span><span class="nx">today</span><span class="p">.</span><span class="nx">min_temp</span><span class="p">}</span><span class="s2"> and </span><span class="p">${</span><span class="nx">today</span><span class="p">.</span><span class="nx">max_temp</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+     <span class="p">})</span>
+         <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">error</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">));</span>
+ <span class="p">}</span>
+<span class="nx">getWeather</span><span class="p">(</span><span class="mi">657169</span><span class="p">);</span>
+<span class="nx">getWeather</span><span class="p">(</span><span class="mi">4118</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>Im Beispiel wurde <code class="language-plaintext highlighter-rouge">then</code> und <code class="language-plaintext highlighter-rouge">catch</code> benutzt. Dies lässt sich jedoch auch mit <code class="language-plaintext highlighter-rouge">async</code> und <code class="language-plaintext highlighter-rouge">await</code> lösen.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">async</span> <span class="kd">function</span> <span class="nx">getWeatherAW</span><span class="p">(</span><span class="nx">woeid</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">fetch</span><span class="p">(</span><span class="s2">`https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/</span><span class="p">${</span><span class="nx">woeid</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+    <span class="kd">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">result</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+    <span class="kd">const</span> <span class="nx">today</span> <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">consolidated_weather</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`Temperatures in </span><span class="p">${</span><span class="nx">data</span><span class="p">.</span><span class="nx">title</span><span class="p">}</span><span class="s2"> stay between </span><span class="p">${</span><span class="nx">today</span><span class="p">.</span><span class="nx">min_temp</span><span class="p">}</span><span class="s2"> and </span><span class="p">${</span><span class="nx">today</span><span class="p">.</span><span class="nx">max_temp</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nx">getWeatherAW</span><span class="p">(</span><span class="mi">657169</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>Wie kann man in einem Async/Await Block die Fehler abfangen? Mit <strong>try</strong> und <strong>catch</strong>!</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">async</span> <span class="kd">function</span> <span class="nx">getWeatherAW</span><span class="p">(</span><span class="nx">woeid</span><span class="p">)</span> <span class="p">{</span>
+<span class="k">try</span> <span class="p">{</span>
+        <span class="kd">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">fetch</span><span class="p">(</span><span class="s2">`https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/</span><span class="p">${</span><span class="nx">woeid</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+        <span class="kd">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">result</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+        <span class="kd">const</span> <span class="nx">today</span> <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">consolidated_weather</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`Temperatures in </span><span class="p">${</span><span class="nx">data</span><span class="p">.</span><span class="nx">title</span><span class="p">}</span><span class="s2"> stay between </span><span class="p">${</span><span class="nx">today</span><span class="p">.</span><span class="nx">min_temp</span><span class="p">}</span><span class="s2"> and </span><span class="p">${</span><span class="nx">today</span><span class="p">.</span><span class="nx">max_temp</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">catch</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+    	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="nx">getWeatherAW</span><span class="p">(</span><span class="mi">657169</span><span class="p">);</span>
+</code></pre></div></div>
+:ET

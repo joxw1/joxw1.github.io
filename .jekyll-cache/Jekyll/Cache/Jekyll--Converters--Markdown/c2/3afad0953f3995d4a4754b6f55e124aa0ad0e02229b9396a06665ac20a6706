@@ -1,0 +1,10 @@
+I"�<p>Ein wichtiger Bestandteil von React und dessen (Klassen-)Komponenten ist der Komponentenlebenszyklus. Um genauer zu sein, geht es um die Lebenszyklusmethoden, die man als Entwickler nutzen kann, um Funktionalität zwischen den Lebensphasen einer React-Komponente einzubauen.</p>
+
+<p>Es gibt dabei mehrere Methoden, die unterschiedliche Zwecke haben. Nachfolgend ist ein Grafik (<a href="https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/">Quelle</a>) eingefügt, die diesen Lebenszyklus darstellt.</p>
+
+<p><img src="../assets/img/lifecycle_diagram.png" alt="React Lifecycle Diagram" /></p>
+
+<p>Für die erste wichtige Methode <em>componentDidMount</em>, kann man sich merken, dass man in dieser Methode API-Calls feuern kann. Das bietet sich an, da vorher die Komponente gerendert wurde und im DOM eingebettet ist. In der <em>componentDidMount</em> Methode bereitet man die Komponente dann auf der “erste Update” vor. Wie man in der Swim Lane <em>Aktualisieren</em> (Grafik) sieht, wird ein Update ausgelöst wenn die Props oder der State sich aktualiseren, oder ein Update manuell forciert wird.</p>
+
+<p>Wird dann ein Update ausgelöst, rendert React die Komponente auch neu. React guckt dann aber auch, was vom DOM wirklich neu geladen werden muss. In diesen Prozess kann man sich funktional auch zwischenschalten. Dafür ist die Methode <em>shouldComponentUpdate</em> gedacht. Damit lässt sich steuern, ob React die Komponente neu rendern soll.</p>
+:ET
