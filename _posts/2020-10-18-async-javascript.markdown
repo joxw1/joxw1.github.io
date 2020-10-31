@@ -51,3 +51,51 @@ async function getRecipesAW() {
 }
 getRecipesAW().then(value => console.log(value));
 ```
+
+### AJAX
+
+AJAX steht für *Asynchronous JavaScript And XML* und wird dazu genutzt, mit einer API (*Application Programming Interface*) zu kommunizieren. AJAX-Aufrufe kann man mit der *fetch*-Funktion ausführen. Wie das geht, ist nachfolgend gezeigt.
+
+**Hinweis:** Zu beachten ist die *Same-Origin-Policy* in JavaScript. Es hindert daran, aus einer bestimmten Domain Requests auf eine andere Domain zu schicken. Um das zu erlauben, muss man *Cross Origin Resource Sharing (CORS)* aktivieren. 
+
+```javascript
+ function getWeather(woeid) {
+     fetch(`https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/${woeid}`)
+         .then(result => result.json())
+         .then(data => {
+         const today = data.consolidated_weather[0];
+         console.log(`Temperatures in ${data.title} stay between ${today.min_temp} and ${today.max_temp}`);
+     })
+         .catch(error => console.log(error));
+ }
+getWeather(657169);
+getWeather(4118);
+```
+
+Im Beispiel wurde `then` und `catch` benutzt. Dies lässt sich jedoch auch mit `async` und `await` lösen.
+
+```javascript
+async function getWeatherAW(woeid) {
+    const result = await fetch(`https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/${woeid}`);
+    const data = await result.json();
+    const today = data.consolidated_weather[0];
+    console.log(`Temperatures in ${data.title} stay between ${today.min_temp} and ${today.max_temp}`);
+}
+getWeatherAW(657169);
+```
+
+Wie kann man in einem Async/Await Block die Fehler abfangen? Mit **try** und **catch**!
+
+```javascript
+async function getWeatherAW(woeid) {
+try {
+        const result = await fetch(`https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/${woeid}`);
+        const data = await result.json();
+        const today = data.consolidated_weather[0];
+        console.log(`Temperatures in ${data.title} stay between ${today.min_temp} and ${today.max_temp}`);
+    } catch(error) {
+    	console.log(error);
+    }
+}
+getWeatherAW(657169);
+```
