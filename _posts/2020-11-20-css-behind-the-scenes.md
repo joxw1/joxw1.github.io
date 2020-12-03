@@ -218,3 +218,104 @@ Ein wichtiges Konzept in CSS ist die Vererbung von Eigenschaften. Jede Eigenscha
 - Das `inherit` Schlüsselwort forciert Vererbung für ein Property
 - Das `initial` Schlüsselwort setzt den Wert für eine Property auf den initialen Wert zurück
 
+### Visuelles Formatierungsmodell
+
+Das visuelle Formatierungsmodell bestimmt wie die Webseite letztendlich gerendert wird und ist der letzte Arbeitsschritt vorm Anzeigen der Webseite.
+
+*Definition: Algorithmus, der Boxen berechnet und das Layout dieser Boxen für jedes Element im Renderbaum bestimmt, um das endgültige Layout der Seite zu bestimmen.* 
+
+Der Algorithmus bezieht dabei unterschiedliche Elemente ein:
+
+- **Dimensionen der Boxen**: Das Box-Modell
+- **Typ der jeweiligen Box**: inline, block und inline-block
+- **Positionsschema**: floats und Positionierung
+- **Stapelung von Kontexten**
+- Viewport-Größe, Dimensionen von Bilder, etc.
+
+#### Das Box-Modell
+
+Das Box-Modell ist eins der wichtigsten Bestandteile von CSS. Um eine Webseite zu gestalten. Es entscheidet darüber, wie ein Element dargestellt wird und welche Größe es hat.
+
+![](https://media.prod.mdn.mozit.cloud/attachments/2015/07/20/11243/c45d8c4d298932a08344a60a575c4a63/%3DCSS_Boxmodell_changed.png)
+
+Nach dem Box-Modell kann jedes Element auf einer Webseite als eine rechteckige Box gesehen werden. Ein Element kann dabei *padding*, *margin*, *width*, *height* und ein *border* besitzen. Diese sind alle optional.
+
+- Inhalt: Der Inhalt einer Box können jegliche Inhalte wie z.B. Text oder Bilder sein
+- **Padding**: Dies ist ein transparenter Bereich um den Inhalt, jedoch innerhalb der Box
+- **Border**: Ist der Rand der Box.
+- **Margin**: Dies ist der Abstand zwischen Boxen, außerhalb der Box für den Inhalt.
+- **Fill area**: Das ist der gesamte innere Bereich der Box, welche mit Farbe oder einem Bild ausgefüllt werden kann. 
+
+Die Höhe und Breite einer Box werden, unter Berücksichtigung der gesamten Elemente der Box, folgendermaßen berechnet:
+
+- **Breite:** `border` rechts + `padding` rechts + `width` des Elements + `padding` links + `border` links
+- **Höhe:** `border` oben+ `padding` oben+ `height` des Elements + `padding` unten+ `border` unten
+
+#### Box-Typen
+
+- **Block-Level Boxen**: Elemente werden visuell als Blöcke formatiert und besitzen 100% der Breite des Elternelements. Sie werden vertikal, nacheinander dargestellt. 
+
+  ```css
+  body {
+    display: block;
+  /*display: flex; 
+    display: list-item;
+    display: table;*/
+  }
+  ```
+
+- **Inline-Block Boxen**: Sie sind ein Hybrid aus `inline` und `block` Boxen. Sie nehmen nur den Platz ein, den sie benötigen und produzieren auch keine Zeilenumbrüche. Man kann jedoch das Box-Modell auf ihnen anwenden.
+
+  ```css
+  body {
+    display: inline-block;
+  }
+  ```
+
+- **Inline Boxen**: Elemente nehmen nur so viel Platz ein, wie sie benötigen und produzieren keine Zeilenumbrüche vor- und nacheinander. Sie stellen somit das Gegenteil der `block`-Boxen dar. Man sollte dabei beachten, dass `inline`-Boxen die `height` und `width` Eigenschaften nicht besitzen. Außerdem können `padding` und `margin` nur horizontal (links und rechts) definiert werden.
+
+  ```css
+  body {
+    display: inline;
+  }
+  ```
+
+### Normal Flow, Floats und absolute Positionierung
+
+Der "Normal Flow" ist das standardmäßige Positionsschema und bedeutet, dass die Elemente in der Reihenfolge der Definition im Code angeordnet sind. Sie werden somit nicht absolut positioniert (nach Koordinaten) sondern stehen in Relation zu den ihnen umgebenden Elementen. 
+
+```css
+.element {
+  position: relative;
+}
+```
+
+Nutzt man für ein Element die `float`-Positionierung, bedeutet das, dass das Element aus dem "Normal Flow" ausgenommen wird und nach links oder rechts  verschoben wird bis es den Rand der umgebenden Box berührt. Texte und `inline`-Blöcke werden dabei um das `float`-Element "gewickelt". 
+
+```css
+.element {
+  float: left;
+/*float: right;*/
+}
+```
+
+Eine andere Positionierungsart ist die absolute Positionierung. Auch bei dieser Positionierungsart wird das Element aus dem "Normal Flow" herausgenommen. Im Gegensatz zum `float` beeinflusst das aber nicht die umgebenden Elemente.  Die Position wird dabei in Relation zum dem Element umgebenden Container angegeben. Dazu kann man die Eigenschaften `top`, `bottom`, `left` und `right` verwenden.
+
+```css
+.element {
+  position: absolute;
+/*position: fixed;*/
+}
+```
+
+### Stacking Contexts
+
+Eine wichtige Eigenschaft in CSS ist die Überlappung von verschiedenen Elementen ("Stacking Contexts"). Man kann sich dies wie Ebenen in Photoshop vorstellen, wo man definiert, welche Ebene oben bzw. unten ist. Man kann die Anordnung der Ebenen z.B. mit dem z-Index beeinflussen. Dabei werden Elemente mit hohem z-Index weiter oben (mehr im Vordergrund) dargestellt. 
+
+```css
+.element {
+  z-index: 3;
+  position: relative;
+}
+```
+
